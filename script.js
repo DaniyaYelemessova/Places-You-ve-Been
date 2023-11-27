@@ -13,6 +13,21 @@ TravelBook.prototype.assignId = function(){
   return this.currentId;
 }
 
+TravelBook.prototype.findPlace = function(id){
+  if(this.places[id] !== undefined){
+    return this.places[id]
+  }
+  return false
+};
+
+TravelBook.prototype.deletePlace = function(id){
+  if(this.places[id] === undefined){
+    return false
+  }
+  delete this.places[id];
+  return true
+}
+
 function PlacesYouHaveBeen(location, date, people, notes){
   this.location = location;
   this.date = date;
@@ -30,4 +45,5 @@ travelTwo = new PlacesYouHaveBeen("Dominicat Republic", "5th of August", ["Phili
 travelBook.addPlaces(travelOne);
 travelBook.addPlaces(travelTwo)
 
-console.log(travelBook.places)
+console.log(travelBook.deletePlace(1));
+console.log(travelBook)
