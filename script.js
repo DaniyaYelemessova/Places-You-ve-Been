@@ -1,9 +1,16 @@
 function TravelBook(){
-  this.places = {}
+  this.places = {};
+  this.currentId = 0;
 }
 
 TravelBook.prototype.addPlaces = function(placesYouHaveBeen){
-    this.places[placesYouHaveBeen.location] = placesYouHaveBeen
+  placesYouHaveBeen.id = this.assignId()
+    this.places[placesYouHaveBeen.id] = placesYouHaveBeen;
+};
+
+TravelBook.prototype.assignId = function(){
+  this.currentId += 1;
+  return this.currentId;
 }
 
 function PlacesYouHaveBeen(location, date, people, notes){
@@ -19,6 +26,8 @@ PlacesYouHaveBeen.prototype.locationAndDate = function(){
 
 let travelBook = new TravelBook();
 const travelOne = new PlacesYouHaveBeen("Las Vegas", "27th of April", ["Lena", "Tanya", "Natalia"], "Lena's Bachelor Party");
+travelTwo = new PlacesYouHaveBeen("Dominicat Republic", "5th of August", ["Philip", "Mum"], "Mum's visit to America")
 travelBook.addPlaces(travelOne);
+travelBook.addPlaces(travelTwo)
 
-console.log(travelBook)
+console.log(travelBook.places)
